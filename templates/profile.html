@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="container">
+
+        <div style="width: 70%; margin: 0 auto; text-align: -webkit-center;">
+            <h3 style="margin-top: 30px;">Personal Information</h3>
+            <table class="player-table">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Position</th>
+                    <th>Height(cm)</th>
+                    <th>Weight(kg)</th>
+                    <th>Dominant Foot</th>
+                </tr>
+                <tr>
+                    <td>{{ player.first_name }}</td>
+                    <td>{{ player.last_name }}</td>
+                    <td>{{ player.age }}</td>
+                    <td>{{ player.get_position_display }}</td>
+                    <td>{{ player.height }}</td>
+                    <td>{{ player.weight }}</td>
+                    <td>{{ player.get_dominant_foot_display }}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div style="width: 80%; margin: 0 auto; text-align: -webkit-center;">
+            <h3>Player Ratings</h3>
+            <table class="player-table">
+                <tr>
+                    <th>Agility</th>
+                    <th>Endurance</th>
+                    <th>Header</th>
+                    <th>Passing</th>
+                    <th>Shooting</th>
+                    <th>Sprint</th>
+                    <th>Strength</th>
+                </tr>
+                <tr>
+                    <td>{{ ratings.agility|floatformat }}</td>
+                    <td>{{ ratings.endurance|floatformat }}</td>
+                    <td>{{ ratings.header|floatformat }}</td>
+                    <td>{{ ratings.passing|floatformat }}</td>
+                    <td>{{ ratings.shooting|floatformat }}</td>
+                    <td>{{ ratings.sprint|floatformat }}</td>
+                    <td>{{ ratings.strength|floatformat }}</td>
+                </tr>
+                <tr>
+                    <th colspan="7" style="background-color: #378e1a;">Average
+                        Rating: {{ average_rating|floatformat }}</th>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 80%; margin: 0 auto; text-align: -webkit-center;">
+            <h3>Levels</h3>
+            <table class="player-table">
+                <tr>
+                    <th>beginner</th>
+                    <th>intermediate</th>
+                    <th>advanced</th>
+                </tr>
+                <tr>
+                    <td>0-5</td>
+                    <td>5-8</td>
+                    <td>8-10</td>
+                </tr>
+                <tr>
+                    <th colspan="7" style="background-color: #378e1a;">Your level: {{ level }}</th>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div>
+            <h2>Get Training Recommendations</h2>
+        </div>
+        <div>
+            <button class="btn btn-primary"><a href="{% url 'training recommendations' %}"
+                                               style="color: white; text-decoration-line: none;">
+                Generate recommendations</a>
+            </button>
+        </div>
+
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+{% endblock %}

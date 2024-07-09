@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block page_content %}
+    <div class="container" style="justify-content: space-between;">
+        <h2 style="margin-top: 30px;">Performance</h2>
+        <table class="player-table" style="margin-bottom: 30px;">
+            <thead>
+            <tr>
+                <th>Exercise</th>
+                <th>Date</th>
+                <th>Unit</th>
+                <th>Done</th>
+                <th>Score</th>
+                <th>Level</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for performance in performances %}
+                <tr>
+                    <td>{{ performance.exercise.name }}</td>
+                    <td>{{ performance.date }}</td>
+                    {% if performance.exercise.type == 'time' %}
+                        <td>{{ performance.exercise.type }}(minutes : seconds)</td>
+                    {% else %}
+                        <td>{{ performance.exercise.type }}</td>
+                    {% endif %}
+
+                    {% if performance.repetitions %}
+                        <td>{{ performance.repetitions }}</td>
+                    {% elif performance.time %}
+                        <td>{{ performance.time_str }}</td>
+                    {% else %}
+                        <td>{{ performance.successful_attempts_str }}</td>
+                    {% endif %}
+
+                    <td>{{ performance.score|floatformat }}</td>
+                    <td>{{ performance.level }}</td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

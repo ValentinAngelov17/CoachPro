@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div class="container" style="justify-content: space-between">
+        <h1>Log Recommended Exercises</h1>
+        <h2>Give your maximum on your first set for every exercise and log the results.</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {% for form, exercise in forms %}
+                <div class="scroll"
+                     style="height: 600px; width: 50%; margin: auto; text-align: center; margin-bottom: 20px; ">
+                    <h2>{{ exercise.name }}</h2>
+                    <p>{{ exercise.description }}</p>
+                    <p><b>Tips:</b> {{ exercise.tips }}</p>
+                    {% if exercise.picture %}
+                        <img src="{{ exercise.picture.url }}" alt="{{ exercise.name }}"
+                             style="width: 350px; height: 240px; margin-top: 10px;">
+                    {% endif %}
+                    <p>Training Target: {{ exercise.get_training_target_display }}</p>
+                    <p>Type: {{ exercise.get_type_display }}</p>
+                    {% if exercise.type == 'repetitions' %}
+
+                        <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} repetitions</p>
+                        <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} repetitions</p>
+                        <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} repetitions</p>
+                    {% elif exercise.type == 'time' %}
+
+                        <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} seconds</p>
+                        <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} seconds</p>
+                        <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} seconds</p>
+                    {% elif exercise.type == 'success_rate' %}
+
+                        <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} completed attempts</p>
+                        <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} completed attempts</p>
+                        <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} completed attempts</p>
+
+
+                    {% endif %}
+                    {{ form.as_p }}
+                </div>
+
+            {% endfor %}
+            <div style="width: 11%; margin: auto;">
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;">Log Exercises</button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

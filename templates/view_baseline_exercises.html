@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <body>
+    <div class="container" style="justify-content: space-between; background-color: aliceblue;">
+        <h2 style="margin-top: 30px;"> Exercises</h2>
+
+        {% for exercise in exercises %}
+            <div class="scroll" style="height: 650px; width: 550px; text-align: center;">
+                <h2>{{ exercise.name }}</h2>
+                <p>{{ exercise.description }}</p>
+                <p><b>Tips:</b> {{ exercise.tips }}</p>
+                {% if exercise.picture %}
+                    <img src="{{ exercise.picture.url }}" alt="{{ exercise.name }}"
+                         style="width: 350px; height: 240px; margin-top: 10px;">
+                {% endif %}
+                <p>Training Target: {{ exercise.get_training_target_display }}</p>
+                <p>Type: {{ exercise.get_type_display }}</p>
+                {% if exercise.type == 'repetitions' %}
+
+                    <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} repetitions</p>
+                    <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} repetitions</p>
+                    <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} repetitions</p>
+                {% elif exercise.type == 'time' %}
+
+                    <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} seconds</p>
+                    <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} seconds</p>
+                    <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} seconds</p>
+                {% elif exercise.type == 'success_rate' %}
+
+                    <p>Beginner level:{{ exercise.beginner_criteria|floatformat }} completed attempts</p>
+                    <p>Intermediate level:{{ exercise.intermediate_criteria|floatformat }} completed attempts</p>
+                    <p>Advanced level: {{ exercise.advanced_criteria|floatformat }} completed attempts</p>
+
+
+                {% endif %}
+                <p><a href="{% url 'add_baseline_performance' exercise.id %}" class="btn btn-primary"
+                      style="margin-left: unset;">Add {{ exercise.name }} workout</a></p>
+
+            </div>
+            <hr>
+
+
+        {% endfor %}
+    </div>
+{% endblock %}

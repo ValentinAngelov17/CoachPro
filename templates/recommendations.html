@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="container">
+        <div style="width: 90%; font-size: 18px; height: 90%; white-space: pre-wrap;">
+            {{ recommendations|safe }}
+        </div>
+        <div>
+            <button class="btn btn-primary">
+                <a style="color: white; text-decoration-line: none;" href="{% url 'profile' %}">Back</a>
+            </button>
+        </div>
+    </div>
+{% endblock %}

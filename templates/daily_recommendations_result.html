@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="container">
+        <h2>Daily Recommendations</h2>
+        <div style="width: 90%; font-size: 16px;">
+            {{ recommendations|linebreaks }}
+        </div>
+        <div>
+           
+            <form action="{% url 'log_recommended_exercises' %}" method="get">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Log Exercises</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

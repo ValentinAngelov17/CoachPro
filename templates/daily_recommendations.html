@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <style>
+        .container form input, select {
+            border-radius: 5px;
+            width: unset;
+            height: 28px;
+            font-size: 20px;
+
+        }
+        .container form p{
+            margin-top: 20px;
+
+        }
+    </style>
+    <div class="container">
+        <h2>Get Daily Recommendations</h2>
+        <form method="post" class="daily-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" style="margin-left: 100px;">Generate recommendations</button>
+        </form>
+    </div>
+{% endblock %}

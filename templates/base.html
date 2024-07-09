@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body style="height: 100dvh; background: url({% static 'images/wp3745974.jpg' %}); background-size: cover; backdrop-filter: brightness(70%);">
+<nav>
+
+    {% if request.user.is_authenticated %}
+        <div class="navigation-buttons middle" style="border-top-left-radius: 30px;"><a href="{% url 'daily_recommendations' %}">Recommendation</a></div>
+
+        <div class="navigation-buttons first"><a href="{% url 'view_baseline_exercises' %}"> Exercise</a>
+        </div>
+        <div class="navigation-buttons middle"><a href="{% url 'view_player_baseline_performances' %}">
+            Performance</a></div>
+        <div class="navigation-buttons last" style="border-top-right-radius: 30px;"><a href="{% url 'profile' %}">Profile</a>
+        </div>
+
+    {% else %}
+        <div class="navigation-buttons middle" style="border-top-left-radius: 30px;"><a href="{% url 'register' %}">Registration</a>
+        </div>
+        <div class="navigation-buttons middle" style="border-top-right-radius: 30px; border-right-style: solid"><a
+                href="{% url 'login' %}">Login</a></div>
+    {% endif %}
+</nav>
+
+{% block page_content %}
+{% endblock %}
+
+
+</body>
+</html>
