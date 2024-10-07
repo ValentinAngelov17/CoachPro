@@ -13,7 +13,7 @@ Profile
 
 ![profile](https://github.com/user-attachments/assets/06102b78-d125-4d7a-926c-c5776e54722c)
 
-Profile reccomendation based on stats
+Profile recommendation based on stats
 
 ![recommendations-profile](https://github.com/user-attachments/assets/3b893642-8420-4978-a1ce-8e659ae7d323)
 
