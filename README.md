@@ -44,3 +44,8 @@ Performance
 Adding exercises from django administration
 
 ![administration](https://github.com/user-attachments/assets/f6f21d70-83df-4d03-961f-69ece0590e5d)
+
+Database diagram
+
+![image](https://github.com/user-attachments/assets/aec516e8-5e55-4cee-a3fc-d1ec49d70543)
+
